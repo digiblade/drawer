@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/Template/Colors.dart';
-import 'package:tasktracker/Template/Typography.dart';
 
 class IconCard extends StatelessWidget {
   const IconCard({Key? key}) : super(key: key);

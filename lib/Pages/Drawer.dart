@@ -4,7 +4,11 @@ import 'package:tasktracker/Template/Space.dart';
 import 'package:tasktracker/Template/Typography.dart';
 
 class SideDrawer extends StatefulWidget {
-  SideDrawer({Key? key}) : super(key: key);
+  final List<Widget> drawerList;
+  SideDrawer({
+    Key? key,
+    this.drawerList = const [],
+  }) : super(key: key);
 
   @override
   _SideDrawerState createState() => _SideDrawerState();
@@ -23,47 +27,15 @@ class _SideDrawerState extends State<SideDrawer> {
             CircleAvatar(
               backgroundColor: success,
               radius: 32,
-              backgroundImage: Image.asset("assets/image/ak.jpg").image,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.edit,
-                color: light,
-              ),
+              backgroundImage: Image.asset(
+                "assets/image/Logo/cglogo.png",
+              ).image,
             ),
           ],
         ),
         verticalSpace(64),
-        ListTile(
-          title: Text(
-            "Home",
-            style: h5_light,
-          ),
-        ),
-        ListTile(
-          title: Text(
-            "About",
-            style: h5_light,
-          ),
-        ),
-        ListTile(
-          title: Text(
-            "Product",
-            style: h5_light,
-          ),
-        ),
-        ListTile(
-          title: Text(
-            "Orders",
-            style: h5_light,
-          ),
-        ),
-        ListTile(
-          title: Text(
-            "Contactus",
-            style: h5_light,
-          ),
+        Column(
+          children: widget.drawerList,
         ),
       ],
     );
