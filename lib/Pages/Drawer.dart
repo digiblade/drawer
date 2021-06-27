@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/Template/Colors.dart';
 import 'package:tasktracker/Template/Space.dart';
-import 'package:tasktracker/Template/Typography.dart';
 
 class SideDrawer extends StatefulWidget {
   final List<Widget> drawerList;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/Template/Colors.dart';
 
+import '../Typography.dart';
+
 class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
@@ -33,6 +35,46 @@ class InputField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TagField extends StatelessWidget {
+  final String tag;
+  const TagField({
+    Key? key,
+    this.tag = "",
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          tag,
+          style: h5,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: primary,
+                width: 0.5,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: primary,
+                width: 0.5,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

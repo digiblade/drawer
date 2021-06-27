@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:tasktracker/App/ChildRegistration.dart';
+import 'package:tasktracker/App/HomePage.dart';
 import 'package:tasktracker/Pages/Drawer.dart';
 import 'package:tasktracker/Pages/FrontPage.dart';
 import 'package:tasktracker/Template/Colors.dart';
+import 'package:tasktracker/Template/Component/InputField.dart';
 import 'package:tasktracker/Template/Space.dart';
 import 'package:tasktracker/Template/Typography.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class ChildRegistration extends StatefulWidget {
+  ChildRegistration({Key? key}) : super(key: key);
 
+  @override
+  _ChildRegistrationState createState() => _ChildRegistrationState();
+}
+
+class _ChildRegistrationState extends State<ChildRegistration> {
   @override
   Widget build(BuildContext context) {
     return FrontPage(
       drawer: SideDrawer(
         drawerList: [
-          ListTile(
-            title: Text(
-              "उपयोगकर्ता संपादन",
-              style: h5_light,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Home(),
+                ),
+              );
+            },
+            child: ListTile(
+              title: Text(
+                "डैशबोर्ड",
+                style: h5_light,
+              ),
             ),
           ),
           ListTile(
@@ -71,8 +87,11 @@ class Home extends StatelessWidget {
       action: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.search, size: 32, color: light //
-              ),
+          icon: Icon(
+            Icons.search,
+            size: 32,
+            color: light,
+          ),
         ),
       ],
       body: Padding(
@@ -82,60 +101,54 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // verticalSpace(1000),
+            verticalSpace(32),
             Text(
-              "Dashboard",
+              "बच्चों का पंजीयन करे",
               style: h1,
             ),
             verticalSpace(32),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              children: [
-                DashboardCard(
-                  project: "Korba",
-                  childCount: "10000",
-                  secterCount: "5",
-                ),
-              ],
-            )
+            TagField(
+              tag: "राज्य",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "जिला",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "परियोजना",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "सेक्टर",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "आंगनबाड़ी",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "बच्चे का कोड",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "बच्चे का फोटो",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "बच्चे का नाम",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "पिता का नाम",
+            ),
+            verticalSpace(16),
+            TagField(
+              tag: "माता का नाम",
+            ),
+            verticalSpace(16),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class DashboardCard extends StatelessWidget {
-  final String? project;
-  final String? secterCount;
-  final String? childCount;
-  const DashboardCard({
-    Key? key,
-    this.project,
-    this.secterCount,
-    this.childCount,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            project!,
-            style: h4,
-          ),
-          Text(
-            "Sector: " + secterCount!,
-            style: h6,
-          ),
-          Text(
-            "Child: " + childCount!,
-            style: p,
-          )
-        ],
       ),
     );
   }
