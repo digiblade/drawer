@@ -33,8 +33,10 @@ class _SideDrawerState extends State<SideDrawer> {
           ],
         ),
         verticalSpace(64),
-        Column(
-          children: widget.drawerList,
+        SingleChildScrollView(
+          child: Column(
+            children: widget.drawerList,
+          ),
         ),
       ],
     );

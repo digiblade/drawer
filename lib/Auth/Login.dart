@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/App/HomePage.dart';
+import 'package:tasktracker/Models/AuthModel.dart';
 import 'package:tasktracker/Template/Colors.dart';
 import 'package:tasktracker/Template/Component/Button.dart';
 import 'package:tasktracker/Template/Component/InputField.dart';
 import 'package:tasktracker/Template/Space.dart';
 import 'package:tasktracker/Template/Typography.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -14,6 +16,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController user = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height / 8;
@@ -62,9 +67,15 @@ class _LoginState extends State<Login> {
                         style: p,
                       ),
                       verticalSpace(32),
-                      InputField(),
+                      InputField(
+                        hintText: "username",
+                        controller: user,
+                      ),
                       verticalSpace(16),
-                      InputField(),
+                      InputField(
+                        hintText: "password",
+                        controller: pass,
+                      ),
                       verticalSpace(8),
                       Align(
                         alignment: Alignment.centerRight,
@@ -79,19 +90,38 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       verticalSpace(16),
-                      SolidButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => Home(),
-                            ),
-                          );
-                        },
-                        border: 32,
-                        color: primary,
-                        title: "Log in",
-                      ),
+                      if (flag)
+                        SolidButton(
+                          onPressed: () async {
+                            setState(() {
+                              flag = false;
+                            });
+                            if ((await getAuth(user.text, pass.text)).length >
+                                0) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => Home(),
+                                ),
+                              );
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: "invalid credentials");
+                            }
+                            setState(() {
+                              flag = true;
+                            });
+                          },
+                          border: 32,
+                          color: primary,
+                          title: "Log in",
+                        )
+                      else
+                        Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(primary),
+                          ),
+                        )
                     ],
                   ),
                 ),

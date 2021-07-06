@@ -6,9 +6,23 @@ import 'package:tasktracker/Template/Colors.dart';
 import 'package:tasktracker/Template/Space.dart';
 import 'package:tasktracker/Template/Typography.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+import 'Report.dart';
 
+class Home extends StatefulWidget {
+  final Widget pre;
+  const Home({
+    Key? key,
+    this.pre = const Opacity(
+      opacity: 0,
+    ),
+  }) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  bool? change = false;
   @override
   Widget build(BuildContext context) {
     return FrontPage(
@@ -38,14 +52,27 @@ class Home extends StatelessWidget {
               style: h5_light,
             ),
           ),
-          ListTile(
-            title: Text(
-              "रिपोर्ट देखें",
-              style: h5_light,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Report(),
+                ),
+              );
+            },
+            child: ListTile(
+              title: Text(
+                "रिपोर्ट देखें",
+                style: h5_light,
+              ),
             ),
           ),
           GestureDetector(
             onTap: () {
+              setState(() {
+                change = true;
+              });
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -7,6 +7,7 @@ class FrontPage extends StatefulWidget {
   final Widget drawer;
   final Widget body;
   final List<Widget> action;
+
   FrontPage({
     Key? key,
     required this.drawer,
@@ -19,8 +20,10 @@ class FrontPage extends StatefulWidget {
 }
 
 class _FrontPageState extends State<FrontPage> {
+  bool flag = true;
   drawerClose() {
     setState(() {
+      flag = true;
       xOffset = 0;
       yOffset = 0;
       scaleFactor = 1;
@@ -30,6 +33,7 @@ class _FrontPageState extends State<FrontPage> {
 
   drawerOpen(width, height) {
     setState(() {
+      flag = false;
       xOffset = width * 6;
       yOffset = height / 6;
       scaleFactor = 0.6;
@@ -44,6 +48,7 @@ class _FrontPageState extends State<FrontPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: flag,
       body: SafeArea(
         child: Stack(
           children: [

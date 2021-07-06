@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tasktracker/Auth/Login.dart';
-import 'package:tasktracker/Pages/Drawer.dart';
-import 'package:tasktracker/Pages/IconCard.dart';
-import 'package:tasktracker/Template/Space.dart';
 import 'package:tasktracker/Template/Typography.dart';
-
-import 'Pages/FrontPage.dart';
 
 import 'Template/Colors.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

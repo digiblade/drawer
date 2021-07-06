@@ -41,9 +41,11 @@ class InputField extends StatelessWidget {
 
 class TagField extends StatelessWidget {
   final String tag;
+  final TextEditingController? controller;
   const TagField({
     Key? key,
     this.tag = "",
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class TagField extends StatelessWidget {
           style: h5,
         ),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
